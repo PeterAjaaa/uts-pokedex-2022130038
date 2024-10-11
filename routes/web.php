@@ -2,14 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [PokemonController::class, 'index'])->name('pokemon.index');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/create', function () {
-    return view('create');
-});
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/create', [PokemonController::class, 'create'])->name('pokemon.create');
+Route::post('/store', [PokemonController::class, 'store'])->name('pokemon.store');

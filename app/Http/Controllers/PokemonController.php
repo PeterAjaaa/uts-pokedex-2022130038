@@ -47,7 +47,7 @@ class PokemonController extends Controller
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $fileName = $file->hashName();
-            $filePath = $file->storeAs('public', $fileName);
+            $filePath = $file->storeAs($fileName);
             $pokemon->update([
                 'photo' => $filePath
             ]);

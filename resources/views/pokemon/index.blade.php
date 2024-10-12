@@ -30,10 +30,10 @@
                             <tr>
                                 <td>{{ $pokemon->id }}</td>
                                 <td>
-                                    <img src="{{ Storage::url($product->photo) }}" class="img-thumbnail w-50">
+                                    <img src="{{ Storage::url($pokemon->photo) }}" class="img-thumbnail w-50">
                                 </td>
                                 <td>
-                                    <a href="{{ route('pokemon.show', $product) }}">
+                                    <a href="{{ route('pokemon.show', $pokemon) }}">
                                         {{ $pokemon->name }}
                                     </a>
                                 </td>
@@ -47,14 +47,14 @@
                                 <td>{{ $pokemon->is_legendary }}</td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-warning" href="{{ route('pokemon.edit', $product) }}">
+                                        <a class="btn btn-warning" href="{{ route('pokemon.edit', $pokemon) }}">
                                             Edit
                                         </a>
-                                        <form action="{{ route('pokemon.destroy', $product) }}" method="POST">
+                                        {{-- <form action="{{ route('pokemon.destroy', $pokemon) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </td>
                             </tr>

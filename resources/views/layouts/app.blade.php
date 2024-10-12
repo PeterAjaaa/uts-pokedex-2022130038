@@ -35,7 +35,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('pokemon.create') }}">Add Pokemon!</a>
                         </li>
                     </ul>
 

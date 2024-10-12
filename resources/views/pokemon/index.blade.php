@@ -9,6 +9,9 @@
         </div>
         <div class="row">
             <div class="col-12 ">
+                <div class="col-12 d-flex justify-content-end mb-3">
+                    <a class="btn btn-primary" href="{{ route('pokemon.create') }}">Add Pokemon!</a>
+                </div>
                 <table class="table table-dark table-striped mt-3">
                     {{ $pokemons->links() }}
                     <thead>

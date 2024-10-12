@@ -10,9 +10,8 @@
             </ul>
         </div>
     @endif
-
-
     <div class="container">
+        <h1>Add New Pokemon!</h1>
         <form action="{{ route('pokemon.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">

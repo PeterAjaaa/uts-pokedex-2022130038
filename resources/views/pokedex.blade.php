@@ -7,8 +7,6 @@
                 <h1>Pokedex: Reimagined (Card View)</h1>
             </div>
         </div>
-
-
         <div class="row mt-3">
             @foreach ($pokemons as $pokemon)
                 <div class="col-4">

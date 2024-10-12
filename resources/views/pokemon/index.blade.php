@@ -10,6 +10,7 @@
         <div class="row">
             <div class="col-12 ">
                 <table class="table table-dark table-striped mt-3">
+                    {{ $pokemons->links() }}
                     <thead>
                         <tr>
                             <th scope="col" class="text-center">ID</th>

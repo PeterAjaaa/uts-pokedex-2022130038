@@ -12,7 +12,7 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        $pokemons = Pokemon::all();
+        $pokemons = Pokemon::paginate(20);
         return view('pokemon.index', compact('pokemons'));
     }
 

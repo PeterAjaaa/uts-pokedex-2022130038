@@ -2,32 +2,54 @@
 
 @section('content')
     <div class="container">
-        <main>
-            <h1>{{ $pokemon->name }}</h1>
-            <p>
-                {{ $pokemon->species }}
-            </p>
-
-            <table class="table table-primary">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>{{ $pokemon->name }}</h1>
+                <p>
+                    {{ $pokemon->species }}
+                </p>
+                @if ($pokemon->photo)
+                    <img src="{{ Storage::url($pokemon->photo) ?? 'https://placehold.co/200' }}" class="img-thumbnail w-25">
+                @else
+                    <img src="https://placehold.co/200" class="img-thumbnail w-25">
+                @endif
+            </div>
+            <table class="table table-dark table-striped mt-3">
                 <tbody>
                     <tr>
-                        <td><b>Retail Price</b></td>
-                        <td>{{ $pokemon->retail_price }}</td>
+                        <td><b>Primary Type</b></td>
+                        <td>{{ $pokemon->primary_type }}</td>
                     </tr>
                     <tr>
-                        <td><b>Wholesale Price</b></td>
-                        <td>{{ $pokemon->wholesale_price }}</td>
+                        <td><b>Weight</b></td>
+                        <td>{{ $pokemon->weight }}</td>
                     </tr>
                     <tr>
-                        <td><b>Min Wholesale Qty.</b></td>
-                        <td>{{ $pokemon->min_wholesale_qty }}</td>
+                        <td><b>Height</b></td>
+                        <td>{{ $pokemon->height }}</td>
                     </tr>
                     <tr>
-                        <td><b>Quantity</b></td>
-                        <td>{{ $pokemon->quantity }}</td>
+                        <td><b>HP</b></td>
+                        <td>{{ $pokemon->hp }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Attack</b></td>
+                        <td>{{ $pokemon->attack }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Defense</b></td>
+                        <td>{{ $pokemon->defense }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Legendary Status</b></td>
+                        @if ($pokemon->is_legendary)
+                            <td>Yes</td>
+                        @else
+                            <td>No</td>
+                        @endif
                     </tr>
                 </tbody>
             </table>
-        </main>
+        </div>
     </div>
 @endsection

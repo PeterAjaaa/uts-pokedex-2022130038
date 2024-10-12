@@ -106,16 +106,13 @@
                         <input type="file" class="form-control" name="photo" id="photo">
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col mt-3">
                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
                 </div>
-                <div class="d-flex justify-content-center col-4">
-                    <button type="button" class="btn btn-secondary mt-3">Cancel</button>
+                <div class="d-flex col justify-content-end mt-3">
+                    <a href="{{ route('pokemon.index') }}" class="btn btn-secondary mt-3">Cancel</a>
                 </div>
-                <div class="d-flex justify-content-end col-4">
-                    <button type="button" class="btn btn-danger mt-3">Reset</button>
-                </div>
+            </div>
         </form>
-    </div>
     </div>
 @endsection

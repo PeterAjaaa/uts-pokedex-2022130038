@@ -61,7 +61,7 @@ class PokemonController extends Controller
      */
     public function show(Pokemon $pokemon)
     {
-        //
+        return view('pokemon.show', compact('pokemon'));
     }
 
     /**
@@ -69,7 +69,7 @@ class PokemonController extends Controller
      */
     public function edit(Pokemon $pokemon)
     {
-        //
+        return view('pokemon.edit', compact('pokemon'));
     }
 
     /**
@@ -77,7 +77,31 @@ class PokemonController extends Controller
      */
     public function update(Request $request, Pokemon $pokemon)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'species' => 'required|string|max:100',
+            'primary_type' => 'required|string|max:50',
+            'weight' => 'numeric|digits_between:0,8',
+            'height' => 'numeric|digits_between:0,8',
+            'hp' => 'integer|digits_between:0,4',
+            'attack' => 'integer|digits_between:0,4|',
+            'defense' => 'integer|digits_between:0,4',
+            'is_legendary' => 'required|boolean',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $pokemon = Pokemon::where('id', $pokemon->id)->update($request->except(['_token', '_method']));
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $fileName = $file->hashName();
+            $filePath = $file->storeAs($fileName);
+            $pokemon->update([
+                'photo' => $filePath
+            ]);
+        }
+
+        return redirect()->route('pokemon.index');
     }
 
     /**
@@ -85,6 +109,7 @@ class PokemonController extends Controller
      */
     public function destroy(Pokemon $pokemon)
     {
-        //
+        $pokemon->delete();
+        return redirect()->route('pokemon.index');
     }
 }

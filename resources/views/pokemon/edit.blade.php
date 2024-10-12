@@ -1,29 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <form>
+        <form action="{{ route('pokemon.update', $pokemon) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('put')
+
+            <div class="row">
+                <div class="col-12">
                     <div class="mt-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" id="name" name="name"
+                            value="{{ old('name', $pokemon->name) }}">
                     </div>
-                </form>
-            </div>
-            <div class="col-6">
-                <form>
+                </div>
+                <div class="col-6">
                     <div class="mt-3">
                         <label for="species" class="form-label">Species</label>
-                        <input type="text" class="form-control" id="species">
+                        <input type="text" class="form-control" id="species" name="species"
+                            value="{{ old('species', $pokemon->species) }}">
                     </div>
-                </form>
-            </div>
-            <div class="col-6">
-                <form>
+                </div>
+                <div class="col-6">
                     <div class="mt-3">
                         <label for="primary_type" class="form-label">Primary Type</label>
-                        <select class="form-select" id="primary_type">
+                        <select class="form-select" id="primary_type" name="primary_type"
+                            value="{{ old('primary_type', $pokemon->primary_type) }}">
                             <option value="Grass">Grass</option>
                             <option value="Fire">Fire</option>
                             <option value="Water">Water</option>
@@ -44,75 +57,65 @@
                             <option value="Flying">Flying</option>
                         </select>
                     </div>
-                </form>
-            </div>
-            <div class="col-6">
-                <form>
+                </div>
+                <div class="col-6">
                     <div class="mt-3">
                         <label for="weight" class="form-label">Weight</label>
-                        <input type="number" class="form-control" id="weight">
+                        <input type="number" class="form-control" name="weight" id="weight"
+                            value="{{ old('weight', $pokemon->weight) }}">
                     </div>
-                </form>
-            </div>
-            <div class="col-6">
-                <form>
+                </div>
+                <div class="col-6">
                     <div class="mt-3">
                         <label for="height" class="form-label">Height</label>
-                        <input type="number" class="form-control" id="height">
+                        <input type="number" class="form-control" name="height" id="height"
+                            value="{{ old('height', $pokemon->height) }}">
                     </div>
-                </form>
-            </div>
-            <div class="col-6">
-                <form>
+                </div>
+                <div class="col-6">
                     <div class="mt-3">
                         <label for="hp" class="form-label">HP</label>
-                        <input type="number" class="form-control" id="hp">
+                        <input type="number" class="form-control" name="hp" id="hp"
+                            value="{{ old('hp', $pokemon->hp) }}">
                     </div>
-                </form>
-            </div>
-            <div class="col-6">
-                <form>
+                </div>
+                <div class="col-6">
                     <div class="mt-3">
                         <label for="attack" class="form-label">Attack</label>
-                        <input type="number" class="form-control" id="attack">
+                        <input type="number" class="form-control" name="attack" id="attack"
+                            value="{{ old('attack', $pokemon->attack) }}">
                     </div>
-                </form>
-            </div>
-            <div class="col-6">
-                <form>
+                </div>
+                <div class="col-6">
                     <div class="mt-3">
                         <label for="defense" class="form-label">Defense</label>
-                        <input type="number" class="form-control" id="defense">
+                        <input type="number" class="form-control" name="defense" id="defense"
+                            value="{{ old('defense', $pokemon->defense) }}">
                     </div>
-                </form>
-            </div>
-            <div class="col-6">
-                <form>
+                </div>
+                <div class="col-6">
                     <div class="mt-3">
                         <label for="is_legendary" class="form-label">Legendary Status</label>
-                        <select class="form-select" id="is_legendary">
+                        <select class="form-select" id="is_legendary" name="is_legendary"
+                            value="{{ old('is_legendary', $pokemon->is_legendary) }}">
                             <option value="0">No</option>
                             <option value="1">Yes</option>
                         </select>
                     </div>
-                </form>
-            </div>
-            <div class="col-12">
-                <form enctype="multipart/form-data">
+                </div>
+                <div class="col-12">
                     <div class="mt-3">
                         <label for="photo" class="form-label">Photo</label>
-                        <input type="file" class="form-control" id="photo">
+                        <input type="file" class="form-control" name="photo" id="photo">
                     </div>
-                </form>
+                </div>
+                <div class="col mt-3">
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </div>
+                <div class="d-flex col justify-content-end mt-3">
+                    <a href="{{ route('pokemon.index') }}" class="btn btn-secondary mt-3">Cancel</a>
+                </div>
             </div>
-            <div class="col-4">
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
-            </div>
-            <div class="d-flex justify-content-center col-4">
-                <button type="button" class="btn btn-secondary mt-3">Cancel</button>
-            </div>
-            <div class="d-flex justify-content-end col-4">
-                <button type="button" class="btn btn-danger mt-3">Reset</button>
-            </div>
-        </div>
-    @endsection
+        </form>
+    </div>
+@endsection

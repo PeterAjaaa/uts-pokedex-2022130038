@@ -51,35 +51,12 @@
                                             href="{{ route('pokemon.edit', $pokemon) }}">
                                             Edit
                                         </a>
-                                        <button type="button" class="btn btn-danger mt-3 rounded-0" data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal">
-                                            Delete
-                                        </button>
-                                        <div class="modal fade" id="deleteModal" tabindex="-1"
-                                            aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        This action cannot be undone.
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cancel</button>
-                                                        <form action="{{ route('pokemon.destroy', $pokemon) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <form action="{{ route('pokemon.destroy', $pokemon) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="btn btn-danger mt-3 rounded-0 me-3">Delete</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
